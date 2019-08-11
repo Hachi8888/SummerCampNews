@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		0D2D33457F2C31769D2FA7A4 /* Pods_SummerCampNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0779A4EF3960E547EFCC7F1E /* Pods_SummerCampNews.framework */; };
 		D19A4C2022FF94B900A895D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19A4C1F22FF94B900A895D4 /* AppDelegate.swift */; };
-		D19A4C2222FF94B900A895D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19A4C2122FF94B900A895D4 /* ViewController.swift */; };
+		D19A4C2222FF94B900A895D4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19A4C2122FF94B900A895D4 /* MainViewController.swift */; };
 		D19A4C2522FF94B900A895D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D19A4C2322FF94B900A895D4 /* Main.storyboard */; };
 		D19A4C2722FF94BB00A895D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D19A4C2622FF94BB00A895D4 /* Assets.xcassets */; };
 		D19A4C2A22FF94BB00A895D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D19A4C2822FF94BB00A895D4 /* LaunchScreen.storyboard */; };
+		D19A4C3222FFA99A00A895D4 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19A4C3122FFA99A00A895D4 /* NewsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,11 +22,12 @@
 		97249D866A517BBFEFDD3BF3 /* Pods-SummerCampNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SummerCampNews.debug.xcconfig"; path = "Target Support Files/Pods-SummerCampNews/Pods-SummerCampNews.debug.xcconfig"; sourceTree = "<group>"; };
 		D19A4C1C22FF94B900A895D4 /* SummerCampNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SummerCampNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D19A4C1F22FF94B900A895D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D19A4C2122FF94B900A895D4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D19A4C2122FF94B900A895D4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D19A4C2422FF94B900A895D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D19A4C2622FF94BB00A895D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D19A4C2922FF94BB00A895D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D19A4C2B22FF94BB00A895D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D19A4C3122FFA99A00A895D4 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,11 +81,12 @@
 			isa = PBXGroup;
 			children = (
 				D19A4C1F22FF94B900A895D4 /* AppDelegate.swift */,
-				D19A4C2122FF94B900A895D4 /* ViewController.swift */,
+				D19A4C2122FF94B900A895D4 /* MainViewController.swift */,
 				D19A4C2322FF94B900A895D4 /* Main.storyboard */,
 				D19A4C2622FF94BB00A895D4 /* Assets.xcassets */,
 				D19A4C2822FF94BB00A895D4 /* LaunchScreen.storyboard */,
 				D19A4C2B22FF94BB00A895D4 /* Info.plist */,
+				D19A4C3122FFA99A00A895D4 /* NewsViewController.swift */,
 			);
 			path = SummerCampNews;
 			sourceTree = "<group>";
@@ -203,7 +206,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D19A4C2222FF94B900A895D4 /* ViewController.swift in Sources */,
+				D19A4C3222FFA99A00A895D4 /* NewsViewController.swift in Sources */,
+				D19A4C2222FF94B900A895D4 /* MainViewController.swift in Sources */,
 				D19A4C2022FF94B900A895D4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
