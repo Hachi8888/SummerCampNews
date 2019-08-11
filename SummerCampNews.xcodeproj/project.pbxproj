@@ -14,6 +14,7 @@
 		D19A4C2722FF94BB00A895D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D19A4C2622FF94BB00A895D4 /* Assets.xcassets */; };
 		D19A4C2A22FF94BB00A895D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D19A4C2822FF94BB00A895D4 /* LaunchScreen.storyboard */; };
 		D19A4C3222FFA99A00A895D4 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19A4C3122FFA99A00A895D4 /* NewsViewController.swift */; };
+		D19A4C3422FFBD6C00A895D4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D19A4C3322FFBD6C00A895D4 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		D19A4C2922FF94BB00A895D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D19A4C2B22FF94BB00A895D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D19A4C3122FFA99A00A895D4 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		D19A4C3322FFBD6C00A895D4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D19A4C3422FFBD6C00A895D4 /* WebKit.framework in Frameworks */,
 				0D2D33457F2C31769D2FA7A4 /* Pods_SummerCampNews.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -54,6 +57,7 @@
 		525ED764F5C1CF8AA13EE320 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D19A4C3322FFBD6C00A895D4 /* WebKit.framework */,
 				0779A4EF3960E547EFCC7F1E /* Pods_SummerCampNews.framework */,
 			);
 			name = Frameworks;
