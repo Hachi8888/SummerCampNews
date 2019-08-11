@@ -51,7 +51,7 @@ class NewsViewController: UIViewController ,IndicatorInfoProvider, UITableViewDa
         tableView.dataSource = self
         
         // tabelViewのサイズを確定
-        tableView.frame = CGRect(x: 0, y: 50, width: self.view.frame.width, height: self.view.frame.width - 50)
+        tableView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         
         // tableViewをViewに追加
         self.view.addSubview(tableView)
@@ -182,7 +182,19 @@ class NewsViewController: UIViewController ,IndicatorInfoProvider, UITableViewDa
         
         // セルをタップしたときの処理
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            // あとで書く
+            
+            // webviewを表示する
+            let linkURL = ((articles[indexPath.row] as AnyObject).value(forKey: "link") as? String)?.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            let urlStr = (linkURL?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
+            
+            guard let url = URL(string: urlStr) else {
+                return
+            }
+            let urlRequest = NSURLRequest(url: url)
+            webView.load(urlRequest as URLRequest)
+            
+            
             
         }
         
