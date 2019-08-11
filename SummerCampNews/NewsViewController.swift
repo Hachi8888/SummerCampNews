@@ -24,6 +24,14 @@ class NewsViewController: UIViewController ,IndicatorInfoProvider, UITableViewDa
     
     //  取得するNewsを全て格納する配列
     var articles: [Any] = []
+    // XMLファイルに解析をかけた情報
+    var elements = NSMutableDictionary()
+    // XMLファイルのタグ情報
+    var element: String = ""
+    // XMLの<title>タグで囲まれた情報を入れる
+    var titleString: String = ""
+    // XMLの<link>タグで囲まれた情報を入れる
+    var linkString: String = ""
     
     // 紐付けを行う
     @IBOutlet weak var webView: WKWebView!
@@ -58,13 +66,18 @@ class NewsViewController: UIViewController ,IndicatorInfoProvider, UITableViewDa
         
        // navigationDelegate(Webページの画面遷移を監視するプロトコル)
         webView.navigationDelegate = self
+        
+      // perseUrl関数を呼び出す
+        perseUrl()
     
     }
+    
     
     // URLが読まれるたびに呼ばれる関数を定義
     func perseUrl() {
         
-        // url型に変換
+        /* url型に変換 URL(string: String型の定数名など )
+                         ^^^^^^^                   */
         let urlToSend: URL = URL(string: url)!
         
         // parserに解析対象のurlを格納
@@ -79,6 +92,62 @@ class NewsViewController: UIViewController ,IndicatorInfoProvider, UITableViewDa
         // tableViewをリロード
         tableView.reloadData()
     }
+    
+    
+    // 解析中に要素の開始だタグがあったときに呼ばれる関数
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        
+        // 自分で定義したelementに引数elementNameで入ってきたタグ名を代入する
+        element = elementName
+        
+        // タグにitemがあるとき
+        if element == "item" {
+            
+            // 初期化
+            elements = [:]
+            titleString = ""
+            linkString = ""
+        }
+        
+    }
+    
+    // 開始タグと終了タグに囲まれているcharacterを見つけたときに呼ばれる関数
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        
+        if element == "title" {
+            // ()内のstringはこの関数の引数のstringのこと。この場合、タイトル名が入っている。
+            titleString.append(string)
+            
+        } else if element == "link" {
+            // ()内のstringはこの関数の引数のstringのこと。この場合、リンク名が入っている。
+            linkString.append(string)
+        }
+        
+    }
+    
+    
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        
+        if elementName == "item" {
+            
+            // titleString,linkStringが空でないなら
+            if titleString != "" {
+                // elementsに"title"、"Link"というキー値を付与しながらtitleString,linkStringをセット
+                elements.setObject(titleString, forKey: "title" as NSCopying)
+            }
+            
+            if linkString != "" {
+                elements.setObject(linkString, forKey: "title" as NSCopying)
+            }
+            
+            // articlesの中にelementsを入れる
+            articles.append(elements)
+            
+            
+        }
+        
+    }
+    
     
     
     // tableViewのセルの高さ
