@@ -14,10 +14,12 @@ import WebKit
 
 class NewsViewController: UIViewController ,IndicatorInfoProvider, UITableViewDataSource, UITableViewDelegate, WKNavigationDelegate, XMLParserDelegate {
     
+    // 引っ張って更新する
+    var refreshControl: UIRefreshControl!
+    
     // tableViewのインスタンスを取得
     var tableView: UITableView =
     UITableView()
-    
     
     // XMLparserのインスタンスを取得
     var parser = XMLParser()
@@ -45,6 +47,14 @@ class NewsViewController: UIViewController ,IndicatorInfoProvider, UITableViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // refreshControlのインスタンスを取得
+        refreshControl = UIRefreshControl()
+        
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        
+        // 紐付け
+        tableView.refreshControl = refreshControl
 
         // デリゲートとの接続
         tableView.delegate = self
@@ -66,7 +76,18 @@ class NewsViewController: UIViewController ,IndicatorInfoProvider, UITableViewDa
         
       // perseUrl関数を呼び出す
         perseUrl()
+        
+        
+    }
     
+    @objc func refresh(){
+        // 2秒後にdelayを読む
+         perform(#selector(delay), with: nil, afterDelay: 2.0)
+    }
+    
+    @objc func delay(){
+        perseUrl()
+        refreshControl.endRefreshing()
     }
     
     
@@ -179,31 +200,24 @@ class NewsViewController: UIViewController ,IndicatorInfoProvider, UITableViewDa
         cell.detailTextLabel?.text = (articles[indexPath.row] as AnyObject).value(forKey: "link") as? String
         cell.detailTextLabel?.textColor = UIColor.gray
         
-        
-        // セルをタップしたときの処理
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            
-            // webviewを表示する
-            let linkURL = ((articles[indexPath.row] as AnyObject).value(forKey: "link") as? String)?.trimmingCharacters(in: .whitespacesAndNewlines)
-            
-            let urlStr = (linkURL?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
-            
-            guard let url = URL(string: urlStr) else {
-                return
-            }
-            let urlRequest = NSURLRequest(url: url)
-            webView.load(urlRequest as URLRequest)
-            
-            
-            
-        }
-        
-        
-        
         return cell
     }
     
-    
+    // セルをタップしたときの処理
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        print("タップした!")
+        
+        
+        // webviewを表示する
+        let linkURL = ((articles[indexPath.row] as AnyObject).value(forKey: "link") as? String)?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let urlStr = (linkURL?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
+        guard let url = URL(string: urlStr) else {
+            return
+        }
+        let urlRequest = NSURLRequest(url: url)
+        webView.load(urlRequest as URLRequest)
+    }
     
     // ウェブページの読み込みが完了したときの処理
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
