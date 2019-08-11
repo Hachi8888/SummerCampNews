@@ -50,9 +50,6 @@ class NewsViewController: UIViewController ,IndicatorInfoProvider, UITableViewDa
         tableView.delegate = self
         tableView.dataSource = self
         
-        // parserの接続
-        parser.delegate = self
-        
         // tabelViewのサイズを確定
         tableView.frame = CGRect(x: 0, y: 50, width: self.view.frame.width, height: self.view.frame.width - 50)
         
@@ -85,6 +82,9 @@ class NewsViewController: UIViewController ,IndicatorInfoProvider, UITableViewDa
         
         // 記事情報を初期化
         articles = []
+        
+        // parserの接続
+        parser.delegate = self
         
         // 解析(パース)の実行
         parser.parse()
@@ -137,7 +137,7 @@ class NewsViewController: UIViewController ,IndicatorInfoProvider, UITableViewDa
             }
             
             if linkString != "" {
-                elements.setObject(linkString, forKey: "title" as NSCopying)
+                elements.setObject(linkString, forKey: "link" as NSCopying)
             }
             
             // articlesの中にelementsを入れる
@@ -166,16 +166,17 @@ class NewsViewController: UIViewController ,IndicatorInfoProvider, UITableViewDa
         // セルの設定
         // セルの色
         cell.backgroundColor = #colorLiteral(red: 1, green: 0.814948995, blue: 0.8542565316, alpha: 1)
-        
         // セルのフォント
         cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         
+        cell.textLabel?.text = (articles[indexPath.row] as AnyObject).value(forKey: "title") as? String
         // セルのテキストサイズとフォント
         cell.textLabel?.textColor = UIColor.black
         
         // セルのサブタイトル(記事urlを表示)の設定
         // セルのフォントサイズと色
         cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 13)
+        cell.detailTextLabel?.text = (articles[indexPath.row] as AnyObject).value(forKey: "link") as? String
         cell.detailTextLabel?.textColor = UIColor.gray
         
         
